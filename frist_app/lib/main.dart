@@ -87,11 +87,11 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
                 ElevatedButton(
                   onPressed: _incrementCounter,
-                  child: Text('+++'),
+                  child: Text('++'),
                 ),
                 ElevatedButton(
                   onPressed: _decrementCounter,
-                  child: Text('---'),
+                  child: Text('--'),
                 )
               ],
             )
