@@ -7,27 +7,11 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
@@ -46,17 +30,56 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _counter1 = 0;
+  int _counter2 = 0;
+  int _counter3 = 0;
+  double _counter4 = 1;
 
   void _incrementCounter() {
     setState(() {
-      _counter++;
+      _counter1++;
     });
   }
 
   void _decrementCounter() {
     setState(() {
-      _counter--;
+      _counter1--;
+    });
+  }
+
+  void _incrementCounterByTwo() {
+    setState(() {
+      _counter2 += 2;
+    });
+  }
+
+  void _decrementCounterByTwo() {
+    setState(() {
+      _counter2 -= 2;
+    });
+  }
+
+  void _multiplyCounter() {
+    setState(() {
+      _counter4 *= 2;
+    });
+  }
+
+  void _divideCounter() {
+    setState(() {
+      _counter4 /= 2;
+    });
+  }
+
+  void _decrementCounter2() {
+    setState(() {
+      _counter3 -= 2;
+    });
+  }
+
+  void _incrementCounter2() {
+    setState(() {
+      _counter3 += 2;
     });
   }
 
@@ -64,37 +87,73 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-
-        title: Text('$_counter'),
+        title: const Text('Triple Row_Kodchakorn'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+              'You have pushed the buttom this many times:',
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                Text(
+                  '$_counter1',
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
                 ElevatedButton(
                   onPressed: _incrementCounter,
-                  child: Text('++'),
+                  child: const Text('++'),
                 ),
                 ElevatedButton(
                   onPressed: _decrementCounter,
-                  child: Text('--'),
-                )
+                  child: const Text('--'),
+                ),
               ],
-            )
+            ),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+              Text(
+                '$_counter2',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              ElevatedButton(
+                onPressed: _incrementCounterByTwo,
+                child: const Text('+++'),
+              ),
+              ElevatedButton(
+                  onPressed: _decrementCounterByTwo, child: const Text('---'))
+            ]),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+              Text(
+                '$_counter3',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              ElevatedButton(
+                onPressed: _decrementCounter2,
+                child: const Text('---'),
+              ),
+              ElevatedButton(
+                onPressed: _incrementCounter2,
+                child: const Text('+++'),
+              )
+            ]),
+            Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+              Text(
+                '$_counter4',
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              ElevatedButton(
+                onPressed: _multiplyCounter,
+                child: const Text('***'),
+              ),
+              ElevatedButton(
+                onPressed: _divideCounter,
+                child: const Text('///'),
+              )
+            ])
           ],
         ),
       ),
@@ -102,7 +161,7 @@ class _MyHomePageState extends State<MyHomePage> {
         onPressed: _incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      ),
     );
   }
 }
