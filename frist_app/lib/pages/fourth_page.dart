@@ -12,12 +12,10 @@ class _FourthPageState extends State<FourthPage> {
   String _number = '';
   String _cvv = '';
   String _valid = '';
-  TextEditingController mmYyController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    mmYyController = TextEditingController();
   }
 
   @override
@@ -33,14 +31,19 @@ class _FourthPageState extends State<FourthPage> {
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'PAYMENT DETAILS',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'PAYMENT DETAILS',
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
+            const Divider(),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: TextFormField(
@@ -126,7 +129,6 @@ class _FourthPageState extends State<FourthPage> {
                   Expanded(
                     flex: 2,
                     child: TextFormField(
-                      controller: mmYyController,
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
@@ -134,19 +136,11 @@ class _FourthPageState extends State<FourthPage> {
                         labelText: 'VALID THROUGH',
                         floatingLabelBehavior: FloatingLabelBehavior.always,
                       ),
-                      onChanged: (value) {
-                        if (value.length == 2 && !value.contains('/')) {
-                          mmYyController.text = value + '/';
-                          mmYyController.selection = TextSelection.fromPosition(
-                            TextPosition(offset: mmYyController.text.length),
-                          );
-                        }
-                      },
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter date';
                         }
-                        if (value.length < 5) {
+                        if (value.length != 5) {
                           return 'CVV is incorrect';
                         }
                         return null;
@@ -159,19 +153,28 @@ class _FourthPageState extends State<FourthPage> {
                 ],
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Payment Successful!'),
-                    ),
-                  );
-                }
-                ;
-              },
-              child: Text('PAYMENT'),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Container(
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Payment Successful!'),
+                        ),
+                      );
+                    }
+                  },
+                  style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50)),
+                  child: const Text(
+                    'PAYMENT',
+                    style: TextStyle(fontSize: 24),
+                  ),
+                ),
+              ),
             ),
           ],
         ),
