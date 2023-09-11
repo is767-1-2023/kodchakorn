@@ -129,6 +129,8 @@ class _FourthPageState extends State<FourthPage> {
                   Expanded(
                     flex: 2,
                     child: TextFormField(
+                      controller: MaskedTextController(mask: '00/00'),
+                      keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: 'MM/YY',
@@ -139,8 +141,8 @@ class _FourthPageState extends State<FourthPage> {
                         if (value == null || value.isEmpty) {
                           return 'Please enter date';
                         }
-                        if (!RegExp(r'^\d{2}/\d{2}$').hasMatch(value)) {
-                          return 'Format should be MM/YY';
+                        if (value.length < 5) {
+                          return 'Your date is incorrect';
                         }
                         return null;
                       },
