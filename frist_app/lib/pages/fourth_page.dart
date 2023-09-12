@@ -14,11 +14,6 @@ class _FourthPageState extends State<FourthPage> {
   String _valid = '';
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -58,7 +53,7 @@ class _FourthPageState extends State<FourthPage> {
                     return 'Please enter your name';
                   }
                   if (value.length <= 5) {
-                    return 'your name is too short';
+                    return 'Your name is too short';
                   }
                   return null;
                 },
@@ -116,7 +111,7 @@ class _FourthPageState extends State<FourthPage> {
                           return 'CVV is incorrect';
                         }
                         if (int.tryParse(value) == null) {
-                          return 'your input is not a number';
+                          return 'Your input is not a number';
                         }
                         return null;
                       },
@@ -166,6 +161,21 @@ class _FourthPageState extends State<FourthPage> {
                           content: Text('Payment Successful!'),
                         ),
                       );
+                      Future.delayed(const Duration(seconds: 2), () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ConfirmPayment(
+                              detail: PaymentDetail(
+                                _namecard,
+                                _number,
+                                _cvv,
+                                _valid,
+                              ),
+                            ),
+                          ),
+                        );
+                      });
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -182,4 +192,39 @@ class _FourthPageState extends State<FourthPage> {
       ),
     );
   }
+}
+
+class ConfirmPayment extends StatelessWidget {
+  final PaymentDetail detail;
+  const ConfirmPayment({super.key, required this.detail});
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: Text('Confirm Payment'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(detail.name),
+            Text(detail.cardnumber),
+            Text(detail.cvv),
+            Text(detail.validDate),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class PaymentDetail {
+  final String name;
+  final String cardnumber;
+  final String cvv;
+  final String validDate;
+
+  const PaymentDetail(this.name, this.cardnumber, this.cvv, this.validDate);
 }

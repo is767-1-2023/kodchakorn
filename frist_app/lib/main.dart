@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frist_app/pages/fifth_page.dart';
 import 'package:frist_app/pages/fourth_page.dart';
 import 'package:frist_app/pages/home_page.dart';
 import 'pages/frist_page.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         '/2': (context) => SecondPage(),
         '/3': (context) => ThirdPage(),
         '/4': (context) => FourthPage(),
+        '/5': (context) => FifthPage(),
       },
     );
   }
