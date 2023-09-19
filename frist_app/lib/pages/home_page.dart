@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:frist_app/pages/fifth_page.dart';
+import 'package:provider/provider.dart';
 
 class Homepage extends StatelessWidget {
   @override
@@ -6,7 +8,11 @@ class Homepage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Home'),
+        title: Consumer<PreferenceModel>(
+          builder: (context, value, child) {
+            return Text('Home - ${value.gender}');
+          },
+        ),
       ),
       body: GridView.count(
         crossAxisCount: 2,
