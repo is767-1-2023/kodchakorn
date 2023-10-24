@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frist_app/pages/fifth_page.dart';
 import 'package:frist_app/pages/fourth_page.dart';
 import 'package:frist_app/pages/home_page.dart';
+import 'package:frist_app/pages/sixth_page.dart';
 import 'package:provider/provider.dart';
 import 'pages/frist_page.dart';
 import 'pages/second_page.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         '/3': (context) => ThirdPage(),
         '/4': (context) => FourthPage(),
         '/5': (context) => FifthPage(),
+        '/6': (context) => SixthPage(),
       },
     );
   }

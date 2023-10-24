@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:midterm_app/modles/customerReport_model.dart';
 import 'package:midterm_app/pages/category_page.dart';
 import 'package:midterm_app/pages/customer_report.dart';
-// import 'package:midterm_app/pages/customerdetail_page.dart';
 import 'package:midterm_app/pages/factory_page.dart';
 import 'package:midterm_app/pages/filter_page.dart';
 import 'package:midterm_app/pages/home_page.dart';
@@ -41,7 +40,6 @@ class MyApp extends StatelessWidget {
         '/registfactory': (context) => RegistFactory(),
         '/filter': (context) => FilterPage(),
         '/customerRe': (context) => CustomerReport(),
-        // '/customerdetail': (context) => CustomerDetailPage(),
       },
     );
   }

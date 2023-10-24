@@ -143,19 +143,19 @@ class PreferenceModel extends ChangeNotifier {
 
   get gender => this._gender;
   set gender(value) {
-    this._gender = value;
+    this.gender = value;
     notifyListeners();
   }
 
   get favColor => this._favColor;
   set favColor(value) {
-    this._favColor = value;
+    this.favColor = value;
     notifyListeners();
   }
 
   get pet => this._pet;
   set pet(value) {
-    this._pet = value;
+    this.pet = value;
     notifyListeners();
   }
 }
