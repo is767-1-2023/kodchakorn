@@ -39,7 +39,12 @@ class _SixthPageState extends State<SixthPage> {
               return CheckboxListTile(
                 title: Text(todos[index].title),
                 value: todos[index].completed,
-                onChanged: (value) {},
+                onChanged: (value) {
+                  setState(() {
+                    todos[index].completed = value!;
+                    controller.updateTodo(todos[index]);
+                  });
+                },
               );
             }
             return Center(
