@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class FactoryPage extends StatelessWidget {
+class productlistPage extends StatelessWidget {
   final List<String> entries = [
     'images/C1.jpg',
     'images/C2.jpg',
@@ -40,7 +40,7 @@ class FactoryPage extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          backgroundColor: Colors.red.shade50,
           title: Text('โรงงานเสื้อผ้า'),
           bottom: TabBar(
             tabs: [
@@ -55,6 +55,40 @@ class FactoryPage extends StatelessWidget {
         ),
         body: Stack(
           children: [
+            Positioned(
+              // right: 8,
+              // left: 8,
+              top: 0,
+              child: Container(
+                width: 415,
+                height: 630, // Adjust the height as needed
+                decoration: BoxDecoration(
+                  color: Colors.deepOrange.shade100,
+                  //color: Colors.red.shade100,
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(20),
+                    bottomRight: Radius.circular(20),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              // right: 8,
+              // left: 8,
+              top:
+                  380, // Adjust the top position to create a gap between blue and yellow
+              child: Container(
+                width: 415,
+                height: 600, // Adjust the height as needed
+                decoration: BoxDecoration(
+                  color: Colors.red.shade100,
+                  //color: Colors.deepOrange.shade200,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(150),
+                  ),
+                ),
+              ),
+            ),
             TabBarView(
               children: [
                 _buildRecommendedTab(context),
@@ -75,7 +109,7 @@ class FactoryPage extends StatelessWidget {
                     ),
                     BottomNavigationBarItem(
                       icon: Icon(Icons.request_quote_rounded),
-                      label: 'ใบเสนอราคา',
+                      label: 'คำสั่งซื้อ',
                     ),
                     BottomNavigationBarItem(
                       icon: Icon(Icons.person),
@@ -86,7 +120,7 @@ class FactoryPage extends StatelessWidget {
                     if (index == 0) {
                       Navigator.pushNamed(context, '/home');
                     } else if (index == 1) {
-                      Navigator.pushNamed(context, '/statusquota');
+                      Navigator.pushNamed(context, '/order');
                     } else if (index == 2) {
                       Navigator.pushNamed(context, '/profile');
                     }
@@ -145,7 +179,7 @@ class FactoryPage extends StatelessWidget {
                         style: TextStyle(fontSize: 14, color: Colors.black54),
                       ),
                       Text(
-                        'ผลิตขั้นต่ำ: $unitMin ชิ้น',
+                        'สั่งซื้อขั้นต่ำ: $unitMin ชิ้น',
                         style: TextStyle(fontSize: 14, color: Colors.black54),
                       ),
                     ],
@@ -204,7 +238,7 @@ class FactoryPage extends StatelessWidget {
                         style: TextStyle(fontSize: 14, color: Colors.black54),
                       ),
                       Text(
-                        'ผลิตขั้นต่ำ: $unitMin ชิ้น',
+                        'สั่งซื้อขั้นต่ำ: $unitMin ชิ้น',
                         style: TextStyle(fontSize: 14, color: Colors.black54),
                       ),
                     ],

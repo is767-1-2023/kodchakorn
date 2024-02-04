@@ -1,75 +1,47 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
-// import 'package:provider/provider.dart';
 
-// class Quotation_Model extends ChangeNotifier {
-//   final List<Map<String, dynamic>> _products = [];
-//   List<Map<String, dynamic>> get products => _products;
-//   void deleteProduct(int index) {
-//     _products.removeAt(index);
-//     notifyListeners();
-//   }
-
-//   List<Map<String, dynamic>> get productslist => _products;
-//   void addProduct(Map<String, dynamic> product) {
-//     _products.add(product);
-//     // print(product);
-//     // print(_products);
-//     notifyListeners();
-//   }
-// }
 class Quotation_Model extends ChangeNotifier {
-  final List<Map<String, dynamic>> _products = [];
-  List<Map<String, dynamic>> get products => _products;
-
-  String productName = '';
-  int productPrice = 0;
-  int productMinQuantity = 0;
-  String productImage = '';
-  int sale = 0;
-  int quantity = 0;
-  String selectedSize = '';
-  String selectedFabric = '';
-
-  void addProduct(Map<String, dynamic> product) {
-    _products.add(product);
+  List<QuotationItem> quotations = [];
+  List<Map<String, dynamic>> factory = [];
+  List<Map<String, dynamic>> newfactory = [];
+  void savesampleProduct(Map<String, dynamic> data) {
+    factory.add(data);
     notifyListeners();
   }
 
-  void onSaved(String productname, int sale, int quantity) {
-    this.productName = productname;
-    this.sale = sale;
-    this.quantity = quantity;
-    notifyListeners();
-  }
+  void savedQuotation(
+    String nameProduct,
+    String reSize,
+    int reQuantity,
+    File pickedImage,
+    String reDetail,
+  ) {
+    QuotationItem newQuotation = QuotationItem(
+      nameProduct: nameProduct,
+      reSize: reSize,
+      reQuantity: reQuantity,
+      reDetail: reDetail,
+      pickedImage: pickedImage,
+    );
 
-  void setProductDetails(
-      String name, int price, int minQuantity, String image) {
-    productName = name;
-    productPrice = price;
-    productMinQuantity = minQuantity;
-    productImage = image;
-    notifyListeners();
-  }
-
-  void purchaseModel({
-    required String name,
-    required int price,
-    required int minQuantity,
-    required String size,
-    required String fabric,
-  }) {
-    productName = name;
-    productPrice = price;
-    productMinQuantity = minQuantity;
-    selectedSize = size;
-    selectedFabric = fabric;
+    quotations.add(newQuotation);
     notifyListeners();
   }
 }
 
+class QuotationItem {
+  String nameProduct;
+  String reSize;
+  int reQuantity;
+  String reDetail;
+  File pickedImage;
 
-//   void deleteProduct(int index) {
-//     _products.removeAt(index);
-//     notifyListeners();
-//   }
-
+  QuotationItem({
+    required this.nameProduct,
+    required this.reSize,
+    required this.reQuantity,
+    required this.reDetail,
+    required this.pickedImage,
+  });
+}

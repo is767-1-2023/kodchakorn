@@ -1,25 +1,36 @@
 import 'package:flutter/material.dart';
 
 class productdetail_Model extends ChangeNotifier {
-  late Product _selectedProduct;
+  late Factory _selectedFactory;
 
-  Product get selectedProduct => _selectedProduct;
+  productdetail_Model() {
+    _selectedFactory = Factory(
+      // Initialize it with a default value or appropriate instance of Factory
+      image: 'default_image_path.jpg',
+      rating: 0,
+      factoryName: 'Default Factory',
+    );
+  }
 
-  void setSelectedProduct(Product product) {
-    _selectedProduct = product;
+  Factory get selectedFactory => _selectedFactory;
+
+  void setSelectedFactory(Factory product) {
+    _selectedFactory = product;
     print(product);
     notifyListeners();
   }
 }
 
-class Product {
+class Factory {
   final String image;
-  final String productName;
-  final int price;
+  // final String productName;
+  final double rating;
+  final String factoryName;
 
-  Product({
+  Factory({
     required this.image,
-    required this.productName,
-    required this.price,
+    // required this.productName,
+    required this.rating,
+    required this.factoryName,
   });
 }

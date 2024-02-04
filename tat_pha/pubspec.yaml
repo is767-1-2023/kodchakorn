@@ -30,7 +30,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  image_picker: ^1.0.4
+  image_picker: ^1.0.5
   
 
 
@@ -39,14 +39,18 @@ dependencies:
   cupertino_icons: ^1.0.2
   provider: ^6.0.5
   mask_text_input_formatter: ^2.5.0
+  intl: ^0.18.1
+  flutter_launcher_icons: ^0.13.1
+  qr_flutter: ^4.1.0
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.13.1
 
-flutter_icons:
- image_path: 'icon/icon.jpg'
+flutter_launcher_icons:
+ android: "launcher_icon"
+ image_path: 'icon/icon2.jpg'
  adroid: true
  ios: true
 
@@ -87,6 +91,20 @@ flutter:
   - images/G5.jpg
   - images/G6.jpg
   - images/tax.jpg
+  - images/Banner1.jpg
+  - images/Banner2.jpg
+  - images/fashion.jpg
+  - images/Bell.jpg
+  - images/Cloth.jpg
+  - images/Bell-2.jpg
+  - images/Q1.jpg
+  - images/Q2.jpg
+  - images/beebear.jpg
+  - images/profile.jpg
+  - images/type-fabric.jpg
+  - images/online-content.jpg
+  - images/online-store.jpg
+  - images/icon.jpg
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

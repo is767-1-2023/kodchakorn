@@ -16,6 +16,7 @@ class _RegistFactoryState extends State<RegistFactory> {
   String _address = '';
   List<String> _selectedTypes = [];
   List<String> _availableTypes = ['เสื้อ', 'กางเกง', 'ชุดว่ายน้ำ', 'เสื้อโปโล'];
+  String dbdlink = '';
 
   MaskTextInputFormatter taxNumberFormatter = MaskTextInputFormatter(
     mask: '# ## ## ##### ## #', //รูปแบบในการใส่
@@ -26,7 +27,7 @@ class _RegistFactoryState extends State<RegistFactory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Colors.red.shade50,
         title: Text('ลงทะเบียนโรงงาน'),
       ),
       body: Form(
@@ -73,6 +74,27 @@ class _RegistFactoryState extends State<RegistFactory> {
               TextFormField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
+                  hintText: 'เลขบัญชีสำหรับรับเงิน',
+                  labelText: 'เลขบัญชี',
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'กรุณาใส่เลขบัญชี';
+                  }
+                  if (value.length <= 6) {
+                    return 'เลขบัญชีไม่ถูก';
+                  }
+                  return null;
+                },
+                onSaved: (newValue) {
+                  _factoryName = newValue!;
+                },
+              ),
+              SizedBox(height: 16),
+              TextFormField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
                   hintText: 'ใส่ชื่อโรงงาน',
                   labelText: 'ชื่อโรงงาน',
                   floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -90,47 +112,68 @@ class _RegistFactoryState extends State<RegistFactory> {
                   _factoryName = newValue!;
                 },
               ),
+              // SizedBox(height: 16),
+              // TextFormField(
+              //   decoration: InputDecoration(
+              //     border: OutlineInputBorder(),
+              //     hintText: 'ใส่เลขประจำตัวผู้เสียภาษี',
+              //     labelText: 'เลขประจำตัวผู้เสียภาษี',
+              //     floatingLabelBehavior: FloatingLabelBehavior.always,
+              //   ),
+              //   inputFormatters: [taxNumberFormatter],
+              //   validator: (value) {
+              //     if (value == null || value.isEmpty) {
+              //       return 'กรุณาใส่เลขประจำตัวผู้เสียภาษี';
+              //     }
+              //     if (value.length != 18) {
+              //       return 'เลขประจำตัวผู้เสียภาษีไม่ถูกต้อง';
+              //     }
+              //     return null;
+              //   },
+              //   onSaved: (newValue) {
+              //     _taxNo = newValue!;
+              //   },
+              // ),
+              // SizedBox(height: 16),
+              // TextFormField(
+              //   decoration: InputDecoration(
+              //     border: OutlineInputBorder(),
+              //     hintText: 'ใส่ที่อยู่ของโรงงาน',
+              //     labelText: 'ที่อยู่ของโรงงาน',
+              //     floatingLabelBehavior: FloatingLabelBehavior.always,
+              //   ),
+              //   validator: (value) {
+              //     if (value == null || value.isEmpty) {
+              //       return 'กรุณาใส่ที่อยู่ของโรงงาน';
+              //     }
+              //     if (value.length <= 15) {
+              //       return 'ที่อยู่ไม่ถูกต้อง';
+              //     }
+              //     return null;
+              //   },
+              //   onSaved: (newValue) {
+              //     _address = newValue!;
+              //   },
+              // ),
               SizedBox(height: 16),
               TextFormField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  hintText: 'ใส่เลขประจำตัวผู้เสียภาษี',
-                  labelText: 'เลขประจำตัวผู้เสียภาษี',
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                ),
-                inputFormatters: [taxNumberFormatter],
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'กรุณาใส่เลขประจำตัวผู้เสียภาษี';
-                  }
-                  if (value.length != 18) {
-                    return 'เลขประจำตัวผู้เสียภาษีไม่ถูกต้อง';
-                  }
-                  return null;
-                },
-                onSaved: (newValue) {
-                  _taxNo = newValue!;
-                },
-              ),
-              SizedBox(height: 16),
-              TextFormField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'ใส่ที่อยู่ของโรงงาน',
-                  labelText: 'ที่อยู่ของโรงงาน',
+                  hintText: 'DBD Link',
+                  labelText: 'ลิงค์ข้อมูลจากกรมพัฒนาธุรกิจการค้า',
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                 ),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'กรุณาใส่ที่อยู่ของโรงงาน';
+                    return 'กรุณาใส่ลิงค์';
                   }
                   if (value.length <= 15) {
-                    return 'ที่อยู่ไม่ถูกต้อง';
+                    return 'ลิงค์ไม่ถูกต้อง';
                   }
                   return null;
                 },
                 onSaved: (newValue) {
-                  _address = newValue!;
+                  dbdlink = newValue!;
                 },
               ),
               SizedBox(height: 16),
@@ -174,14 +217,16 @@ class _RegistFactoryState extends State<RegistFactory> {
                     );
                     var customerReportModel =
                         context.read<CustomerReport_Model>();
-                    customerReportModel.addFactory(RegisterF(
-                      _name,
-                      _factoryName,
-                      '',
-                      _taxNo,
-                      _address,
-                      _selectedTypes.join(", "),
-                    ));
+                    customerReportModel.addFactory(
+                      RegisterF(
+                        _name,
+                        _factoryName,
+                        '',
+                        _taxNo,
+                        _address,
+                        _selectedTypes.join(", "),
+                      ),
+                    );
 
                     // Future.delayed(const Duration(seconds: 2), () {
                     //   Navigator.pushNamed(context, '/customerRe');
